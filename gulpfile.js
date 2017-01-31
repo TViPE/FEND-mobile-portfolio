@@ -1,9 +1,20 @@
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
-//gulp.task('default', function () { console.log('Hello Gulp!') });
+var imageResize = require('gulp-image-resize');
  
-gulp.task('default', () =>
-    gulp.src('/views/images/*')
+gulp.task('imagemin', () =>
+    gulp.src('views/images/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('/views/images'))
+        .pipe(gulp.dest('views/images'))
+);
+
+gulp.task('imageresize', () => 
+  gulp.src('views/images/*')
+    .pipe(imageResize({
+      width : 100,
+      height : 100,
+      crop : true,
+      upscale : false
+    }))
+    .pipe(gulp.dest('views/images'))
 );
