@@ -3,16 +3,16 @@ const imagemin = require('gulp-imagemin');
 var imageResize = require('gulp-image-resize');
  
 gulp.task('imagemin', () =>
-    gulp.src('views/images/*')
+    gulp.src('views/images/*.jpg')
         .pipe(imagemin())
         .pipe(gulp.dest('views/images'))
 );
 
 gulp.task('imageresize', () => 
-  gulp.src('views/images/*')
+  gulp.src('views/images/*.jpg')
     .pipe(imageResize({
-      width : 100,
-      height : 100,
+      width : 360,
+      height : 270,
       crop : true,
       upscale : false
     }))
