@@ -28,7 +28,16 @@ Some useful tips to help you get started:
 
 1. Copy the public URL ngrok gives you and try running it through PageSpeed Insights! Optional: [More on integrating ngrok, Grunt and PageSpeed.](http://www.jamescryer.com/2014/06/12/grunt-pagespeed-and-ngrok-locally-testing/)
 
-Profile, optimize, measure... and then lather, rinse, and repeat. Good luck!
+###Optimize PageSpeed Insights score for part 1:
+1. Use gulp.js (gulp-imagemin and gulp-imageresize) to compress and resize images.
+2. Minify css stylesheet file by using media attribute for print.
+3. Inline css stylesheet in index.html file to reduce the downloading work for the browser.
+4. Move the css stylesheet above the js script in order to avoid render blocking.
+5. Move all JavaScript to the footer
+6. Use async attribute for JavaScript to signal the browser that the scripts does not need to be executed at the exact point where it's referenced. This allows the browser to continue construct the DOM and let the scripts execute when it is ready.
+7. Use Web Font Loader to replace the Google font, which avoid loading font from external resrouces.
+8. Inline Javascript.
+
 
 ####Part 2: Optimize Frames per Second in pizza.html
 
@@ -53,3 +62,17 @@ The portfolio was built on Twitter's <a href="http://getbootstrap.com/">Bootstra
 
 * <a href="http://getbootstrap.com/css/">Bootstrap's CSS Classes</a>
 * <a href="http://getbootstrap.com/components/">Bootstrap's Components</a>
+
+###Optimization FPS for part 2:
+1. Replace querySelector with getElementById and querySelectorAll with getElementsByClassName. This replacement help enhancing in the performance.
+2. Remove 2 functions: DetermineDx() and SizeSwitcher(size)
+3. Rewrite the changePizzaSizes(size):
+	* Rewrite switch statement to change the size of the pizza.
+	* Declare a new var randomPizza to store document.getElementsByClassName("randomPizzaContainer") to minify bytes.
+	* Decare a new var len to store document.getElementsByClassName("randomPizzaContainer").length to minify bytes.
+4. Update the updatePositions() function:
+	* Move the var items out of the function.
+	* Declare a var itemLength = items.length; to minify bytes.
+	* Set the phase calculation out of the loop to minimize  repeatative calculation in the loop body.
+5. Reduce the number of pizzas from 200 to 28 when DOMContentLoaded. This reduces unncessary extra pizza images when the page is loaded.
+
