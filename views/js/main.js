@@ -426,20 +426,21 @@ var resizePizzas = function(size) {
     var newwidth;
     switch (size) {
       case "1":
-        newwidth = 25;
+        newwidth = 0.25;
         break;
       case "2":
-        newwidth = 33.3;
+        newwidth = 0.333;
         break;
       case "3": 
-        newwidth = 50;
+        newwidth = 0.5;
         break;
       default:
         console.log("bug in sizeSwitcher");
     }
     var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
-    for (var i = 0; i < randomPizzas.length; i++) {
-      randomPizzas[i].style.width = newwidth + "%";
+    var randomPizzasLength = randomPizzas.length;
+    for (var i = 0; i < randomPizzasLength; i++) {
+      randomPizzas[i].style.width = newwidth;
     }
   }
 
@@ -490,9 +491,9 @@ function updatePositions() {
   var scrollPosition = document.body.scrollTop;
   /// Replace items.length with itemLength to avoid calling multpitle times in loop and improve performance.
   var itemLength = items.length; 
-  var phase = [];
+  var phaseArray = [];
   for (var i = 0 ; i<5; i++){
-    phase.push(Math.sin((scrollPosition/1250) + i));
+    phaseArray.push(Math.sin((scrollPosition/1250) + i));
   }
   for (var i = 0; i < itemLength; i++) {
     //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
