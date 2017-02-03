@@ -487,12 +487,14 @@ var items = document.getElementsByClassName('mover');
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
-  var scrollPosition = document.body.scrollTop / 1250;
+  var scrollPosition = document.body.scrollTop;
+  /// Replace items.length with itemLength to avoid calling multpitle times in loop and improve performance.
+  var itemLength = items.length; 
   var phase = [];
   for (var i = 0 ; i<5; i++){
-    phase.push(Math.sin(scrollPosition + i));
+    phase.push(Math.sin((scrollPosition/1250) + i));
   }
-  for (var i = 0; i < items.length; i++) {
+  for (var i = 0; i < itemLength; i++) {
     //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase[i%5] + 'px';
   }
