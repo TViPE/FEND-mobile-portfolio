@@ -491,9 +491,9 @@ function updatePositions() {
   var scrollPosition = document.body.scrollTop;
   /// Replace items.length with itemLength to avoid calling multpitle times in loop and improve performance.
   var itemLength = items.length; 
-  var phaseArray = [];
+  var phase = [];
   for (var i = 0 ; i<5; i++){
-    phaseArray.push(Math.sin((scrollPosition/1250) + i));
+    phase.push(Math.sin((scrollPosition/1250) + i));
   }
   for (var i = 0; i < itemLength; i++) {
     //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
