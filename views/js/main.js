@@ -422,25 +422,24 @@ var resizePizzas = function(size) {
   changeSliderLabel(size);
 
   // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    var newwidth;
-    switch (size) {
-      case "1":
-        newwidth = 0.25;
-        break;
-      case "2":
-        newwidth = 0.333;
-        break;
-      case "3": 
-        newwidth = 0.5;
-        break;
-      default:
-        console.log("bug in sizeSwitcher");
-    }
-    var randomPizzas = document.getElementsByClassName("randomPizzaContainer");
-    var randomPizzasLength = randomPizzas.length;
-    for (var i = 0; i < randomPizzasLength; i++) {
-      randomPizzas[i].style.width = newwidth;
+  function changePizzaSizes (size) {
+    switch (size){
+        case "1":
+          newWidth = 25;
+          break;
+        case "2":
+          newWidth = 33.3;
+          break;
+        case "3":
+          newWidth = 50;
+          break;
+        default:
+          console.log("bug in sizeSwitcher");
+      }
+    var randomPizza = document.getElementsByClassName("randomPizzaContainer");
+    var len = randomPizza.length;
+    for (var i = 0; i < len; i++) {
+      randomPizza[i].style.width = newWidth + "%";
     }
   }
 
@@ -496,7 +495,6 @@ function updatePositions() {
     phase.push(Math.sin((scrollPosition/1250) + i));
   }
   for (var i = 0; i < itemLength; i++) {
-    //var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase[i%5] + 'px';
   }
 
@@ -517,7 +515,7 @@ window.addEventListener('scroll', updatePositions);
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 30; i++) {
+  for (var i = 0; i < 28; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover';
     elem.src = "images/pizza.png";
